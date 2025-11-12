@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 
 function Ferramenta() {
     const [pesoInicial, setPesoInicial] = useState("");
@@ -8,7 +8,7 @@ function Ferramenta() {
     const [dados, setDados] = useState("");
     const [abaAtiva, setAbaAtiva] = useState("igpa"); // controla qual ferramenta exibir
 
-    function calcularIGPA() {
+    const calcularIGPA = useCallback(() => {
         const pi = parseFloat(pesoInicial);
         const pf = parseFloat(pesoFinal);
         const cr = parseFloat(consumoRacao);
@@ -45,9 +45,9 @@ function Ferramenta() {
                 {interpretacao}
             </>
         );
-    }
+    }, [pesoInicial, pesoFinal, consumoRacao]);
 
-    function calcularICA() {
+    const calcularICA = useCallback(() => {
         const pi = parseFloat(pesoInicial);
         const pf = parseFloat(pesoFinal);
         const cr = parseFloat(consumoRacao);
@@ -86,9 +86,9 @@ function Ferramenta() {
                 {interpretacao}
             </>
         );
-    }
+    }, [pesoInicial, pesoFinal, consumoRacao]);
 
-    function calcularIEA() {
+    const calcularIEA = useCallback(() => {
         const pi = parseFloat(pesoInicial);
         const pf = parseFloat(pesoFinal);
         const cr = parseFloat(consumoRacao);
@@ -127,21 +127,21 @@ function Ferramenta() {
                 {interpretacao}
             </>
         );
-    }
+    }, [pesoInicial, pesoFinal, consumoRacao]);
 
-    function limparCampos() {
+    const limparCampos = useCallback(() => {
         setPesoInicial("");
         setPesoFinal("");
         setConsumoRacao("");
         setResultado("");
         setDados("");
-    }
+    }, []);
 
-    const calcularAtual = () => {
+    const calcularAtual = useCallback(() => {
         if (abaAtiva === "igpa") calcularIGPA();
         else if (abaAtiva === "ica") calcularICA();
         else if (abaAtiva === "iea") calcularIEA();
-    };
+    }, [abaAtiva, calcularIGPA, calcularICA, calcularIEA]);
 
     return (
         <section id="Ferramenta" className="Ferramenta_section">
@@ -157,6 +157,8 @@ function Ferramenta() {
                             setResultado("");
                             setDados("");
                         }}
+                        aria-label="Calcular IGPA"
+                        aria-pressed={abaAtiva === "igpa"}
                     >
                         IGPA
                     </button>
@@ -167,6 +169,8 @@ function Ferramenta() {
                             setResultado("");
                             setDados("");
                         }}
+                        aria-label="Calcular ICA"
+                        aria-pressed={abaAtiva === "ica"}
                     >
                         ICA
                     </button>
@@ -177,6 +181,8 @@ function Ferramenta() {
                             setResultado("");
                             setDados("");
                         }}
+                        aria-label="Calcular IEA"
+                        aria-pressed={abaAtiva === "iea"}
                     >
                         IEA
                     </button>
@@ -285,12 +291,30 @@ function Ferramenta() {
                 </div>
 
                 <div className="buttons_group">
-                    <button className="button_ferramenta" type="button" onClick={calcularAtual}>Calcular Índice</button>
-                    <button className="limpar_ferramenta" type="button" onClick={limparCampos}><i className="fa-solid fa-trash-can" /> Limpar</button>
+                    <button 
+                        className="button_ferramenta" 
+                        type="button" 
+                        onClick={calcularAtual}
+                        aria-label="Calcular índice alimentar"
+                    >
+                        Calcular Índice
+                    </button>
+                    <button 
+                        className="limpar_ferramenta" 
+                        type="button" 
+                        onClick={limparCampos}
+                        aria-label="Limpar campos"
+                    >
+                        <i className="fa-solid fa-trash-can" aria-hidden="true" /> Limpar
+                    </button>
                 </div>
 
-                <div className="informacoes" id="dadosInformados">{dados}</div>
-                <div className="resultado" id="resultado">{resultado}</div>
+                {dados && (
+                    <div className="informacoes" id="dadosInformados">{dados}</div>
+                )}
+                {resultado && (
+                    <div className="resultado" id="resultado">{resultado}</div>
+                )}
 
                 <div>
                     <a href="https://dzo.ufla.br/Roberto/transparencias/indice_alimentar.pdf" target="_blank" rel="noopener noreferrer">

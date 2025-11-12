@@ -1,14 +1,14 @@
 function Cabecalho() {
     return (
         
-        <header class="Cabecalho">
-            <nav class="Cabecalho_nav">
-    <div class="mobile_menu">
-        <div class="line1"></div>
-        <div class="line2"></div>
-        <div class="line3"></div>
+        <header className="Cabecalho">
+            <nav className="Cabecalho_nav">
+    <div className="mobile_menu">
+        <div className="line1"></div>
+        <div className="line2"></div>
+        <div className="line3"></div>
     </div>
-    <ul class="Cabecalho_ul">
+    <ul className="Cabecalho_ul">
     </ul>
 </nav>
         </header>   
