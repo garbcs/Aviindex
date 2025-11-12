@@ -1,0 +1,1 @@
+import{j as o}from"./index-BVMQ8G6G.js";function r(){return o.jsx("footer",{className:"footer",children:o.jsx("p",{className:"p_footer",children:"© 2025 AviIndex. Todos os direitos reservados."})})}export{r as default};
