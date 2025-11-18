@@ -215,6 +215,7 @@ function Ferramenta() {
                             <p className="descricao_p">O ICA (Índice de Conversão Alimentar) mede quanto de ração é necessário para produzir 1 kg de ganho de peso.</p>
                             <strong>Fórmula: Consumo de Ração / (Peso Final - Peso Inicial)</strong>
                             <p className="avisoKG">Quanto menor o ICA, melhor a eficiência alimentar. Valores típicos: 1.8 a 2.2 kg.</p>
+                            <p className="avisoKG">O cálculo está em quilogramas (kg); se necessário, faça a conversão antes de utilizá-lo.</p>
                         </div>
 
                         <div>
@@ -235,6 +236,7 @@ function Ferramenta() {
                             <p className="descricao_p">O IEA (Índice de Eficiência Alimentar) representa o ganho de peso em relação ao consumo total de ração, expresso em percentual.</p>
                             <strong>Fórmula: [(Peso Final - Peso Inicial) / Consumo de Ração] × 100</strong>
                             <p className="avisoKG">Quanto maior o IEA, melhor a eficiência na utilização da ração.</p>
+                            <p className="avisoKG">O cálculo está em quilogramas (kg); se necessário, faça a conversão antes de utilizá-lo.</p>
                         </div>
 
                         <div>
